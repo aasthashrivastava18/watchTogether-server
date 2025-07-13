@@ -25,7 +25,8 @@ const server = http.createServer(app);
 // Enhanced Socket.IO setup
 const io = socketIo(server, {
   cors: {
-    origin: process.env.CORS_ORIGIN || ["http://localhost:5174", "http://192.168.1.5:5174"],
+    // origin: process.env.CORS_ORIGIN || ["http://localhost:5174", "http://192.168.1.5:5174"],
+    origin: '*',
     methods: ["GET", "POST"],
     credentials: true
   },
@@ -40,9 +41,12 @@ connectDB();
 // --- MIDDLEWARE SETUP ---
 // IMPORTANT: CORS must be the first middleware to run
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || ["http://localhost:5174", "http://192.168.1.5:5174"],
+  // origin: process.env.CORS_ORIGIN || ["http://localhost:5174", "http://192.168.1.5:5174"],
+  origin: '*',
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+
+  // methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: '*',
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
